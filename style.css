@@ -1,0 +1,292 @@
+/*Reset das posições do site*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*Implementação do root comum*/
+
+:root {
+    /*Definição da proporção de letras*/
+    font-size: 62, 5%;
+
+    /* Fonte-size */
+    --fs-body: 1.6rem;
+    --fs-h1-mb: 4rem;
+
+    /* Cores de fundo */
+    --bg-color-primary: #e9ebf8;
+    --bg-color-secondary: #a6aef7;
+    --bg-color-label-h1: #c3b4ce;
+    --bg-color-label-card: #ffe3f9;
+
+    --primary-color: #ffffff;
+    --secondary-color: #5c6981;
+
+    /*Fonts-Family*/
+    --ff-title: 'Staatliches', cursive;
+    --ff-paragraph-mobile: 'Palanquin', sans-serif;
+    --ff-paragraph-web: 'Roboto', sans-serif;
+}
+/*Position page equal central*/
+.page {
+    min-width: 38.4rem;
+    margin: 0 auto;
+  }
+
+/*Define params for body*/
+  body {
+    font-size: var(--fs-body);
+    background-color: var(--bg-color-primary);
+    font-family: var(--ff-title);
+  }
+
+  /*Define params for p in header initial hidden*/
+  header p {
+    display: none;
+    font-family: 'Palanquin', sans-serif;
+    animation: cardDown 1s 300ms backwards;
+  }
+
+  /*Define position and colors in header*/
+header {
+    height: 27.9rem;
+    text-align: center;
+    background-color: var(--bg-color-secondary);
+}
+
+/*Define logo in svg Params and animation*/
+header .logo {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    transition: all 300ms ease-in;
+  }
+
+/*Define logo in svg Params and animation*/
+header .logo:hover {
+    transform: scale(1.5);
+  }
+  
+/*Params for using h1 */
+  header h1 {
+    color: var(--primary-color);
+    background-color: var(--bg-color-label-h1);
+    width: 100%;
+    font-size: var(--fs-h1-mb);
+    line-height: 3.4rem;
+    letter-spacing: 0.05em;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.541);
+    padding: 0.8rem 0;
+    animation: slide 2s ease;
+  }
+/* Define params for initial main focus in padding initial*/
+  main {
+    padding: 1.4rem 3.2rem 6rem;
+  }
+
+  main p {
+    font-family: var(--ff-secondary);
+    line-height: 2rem;
+    margin-bottom: 6.3rem;
+    margin-top: 1.4rem;
+  }
+
+/*Define box cards in grid*/
+  .cards{
+    display:grid;
+    gap:3.2rem;
+  }
+/*Define the format */
+.card {
+    animation: cardTop 1s;
+    position: relative;
+    transition: all 300ms ease-in-out;
+    cursor: pointer;
+  }
+  .card:hover {
+    transform: scale(1.1);
+    filter: brightness(0.5);
+  }
+  
+  .card img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .card p{
+    font-family: var(--bg-color-label-h1);
+    line-height: 3.4rem;
+    letter-spacing: 0.05rem;
+    color:var(--secondary-color);
+    background-color: var(--bg-color-label-card);
+    padding: 0.4rem 2.4rem;
+    border-radius: 2rem;
+
+    position: absolute;
+    z-index: 1;
+    right: 0.6rem;
+    top: 0.1rem;
+  }
+/*Hidden images unused in version Mobile and transition screen*/
+.card:nth-child(3),
+.card:nth-child(6) {
+  display: none;
+}
+
+  footer{
+    display: none;
+  }
+  /* ================== KEYFRAMES =================================== */
+  @keyframes slide {
+    0% {
+      transform: translateY(-30px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  @keyframes cardTop {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+  }
+
+  @keyframes cardDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+  }
+
+  /* ================== Media SETTINGS ===============================*/
+/*Adjust for variables screens*/
+@media (min-width: 600px) {
+    .page {
+        min-width: 100vw;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+      }
+    
+      main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 6.4rem 2rem 3rem;
+      }
+      main p {
+        display: none;
+      }
+      body {
+        display: flex;
+      }
+    
+      header {
+        width: 37.7rem;
+        min-width: 31.2rem;
+        height: 100vh;
+      }
+    
+      header p {
+        color: #ffffff;
+        font-family: var(--ff-paragraph-web);
+        font-weight: 400;
+        font-size: 1.7rem;
+        line-height: 20px;
+        display: block;
+        width: 27.5rem;
+        height: 26.2rem;
+        margin: 3.2rem auto 0;
+        /* or 83% */
+      }
+
+      .cards{
+        display: grid;
+        grid-template-areas:
+        'A B'
+        'D B'
+        'D E';
+        gap:1.2rem
+      }
+      .card:nth-child(3),
+      .card:nth-child(6) {
+        display: initial;
+      } 
+
+      .card:nth-child(1) {
+        grid-area: A;
+      }
+      .card:nth-child(2) {
+        grid-area: B;
+      }
+      .card:nth-child(3) {
+        display: none;
+      }
+      .card:nth-child(4) {
+        grid-area: E;
+      }
+      .card:nth-child(5) {
+        grid-area: D;
+      }
+      .card:nth-child(6) {
+        display: none;
+      }
+
+
+
+footer {
+    display: block;
+    height: 2.8rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 28px;
+    /* identical to box height, or 200% */
+
+    text-align: center;
+
+    color: #4a4e69;
+    margin-top: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .cards {
+    grid-template-areas:
+      'A B C'
+      'D B F'
+      'D E F';
+    gap: 3.2rem;
+  }
+
+  .card img {
+    max-width: 30.7rem;
+  }
+
+  .card:nth-child(3),
+  .card:nth-child(6) {
+    display: initial;
+  }
+
+  .card:nth-child(1) {
+    grid-area: A;
+  }
+  .card:nth-child(2) {
+    grid-area: B;
+  }
+  .card:nth-child(3) {
+    grid-area: C;
+  }
+  .card:nth-child(4) {
+    grid-area: E;
+  }
+  .card:nth-child(5) {
+    grid-area: D;
+  }
+  .card:nth-child(6) {
+    grid-area: F;
+  }
+}
